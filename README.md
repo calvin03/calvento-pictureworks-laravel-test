@@ -12,7 +12,11 @@ To Set Up The Project
 
 4. php artisan key:generate
 
-5. run localhost
+5. php artisan migrate:refresh --seed
+
+6. run localhost
+
+7. go to http:localhost:8000/user/1
 
 Documentation
 
