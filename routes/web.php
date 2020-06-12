@@ -18,5 +18,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('user', 'UserController');
+Route::get('user/{id}', 'UserController@show')->name('show_user');
 Route::post('user/add_comment', 'UserController@addComment')->name('add_comment');

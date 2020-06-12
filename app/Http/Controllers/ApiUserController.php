@@ -8,17 +8,17 @@ use App\Comment;
 use Hash;
 use Validator;
 use Redirect;
+use Illuminate\Http\Response;
 
-class UserController extends Controller
+class ApiUserController extends Controller
 {
-  
     public function show($id)
     {
-        $user = User::find($id);
+        $user = User::with('comments')->where(['id' => $id])->first();
         if (isset($user)) {
-            return view('pages.user', compact(['user']));
+            return response()->json(json_encode($user), 200);
         } else {
-            abort(404);
+            return response()->json("No User Found", 404);
         }
     }
     public function addComment(Request $request)
@@ -31,7 +31,7 @@ class UserController extends Controller
 
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
-            return Redirect::back()->withInput($request->all())->withErrors($validator);
+            return response()->json($validator->errors(), 500);
         }
 
         $user = User::find($request->id);
@@ -41,13 +41,12 @@ class UserController extends Controller
             $new_comment->user_id = $request->id;
             $new_comment->comment_description = $request->comment;
             if ($new_comment->save()) {
-                return Redirect::back()->with('success', 'Add comment successful');
-                ;
+                return response()->json('Add comment successful', 200);
             } else {
-                return Redirect::back()->withInput($request->all())->withErrors('Add comment not successful');
+                return response()->json('Add comment not successful', 500);
             };
         } else {
-            return Redirect::back()->withInput($request->all())->withErrors('Password not match.');
+            return response()->json('Password Not Match', 401);
         }
     }
 }

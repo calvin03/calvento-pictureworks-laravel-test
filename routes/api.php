@@ -17,3 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::get('user/{id}', 'ApiUserController@show')->name('api_show_user');
+Route::post('user/add_comment', 'ApiUserController@addComment')->name('api_add_comment');
+
