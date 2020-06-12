@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('user', 'UserController')->only([
-    'show','store'
-]);
+Route::resource('user', 'UserController');
+Route::post('user/add_comment', 'UserController@addComment')->name('add_comment');

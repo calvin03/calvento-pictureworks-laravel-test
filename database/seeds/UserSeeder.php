@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
 class UserSeeder extends Seeder
 {
@@ -16,7 +15,7 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             'id' => 1,
             'name' => 'Calvin Calvento',
-            'password' => Hash::make('123'),
+            'password' => bcrypt('123'),
             'created_at' => Carbon::now(),
 
         ]);
@@ -24,7 +23,7 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             'id' => 2,
             'name' => 'Test Account',
-            'password' => Hash::make('123'),
+            'password' => bcrypt('123'),
             'created_at' => Carbon::now(),
 
         ]);
