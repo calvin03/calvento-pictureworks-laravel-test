@@ -12,7 +12,7 @@ class DispatchAddComment extends Command
      *
      * @var string
      */
-    protected $signature = 'dispatch:add_comment {id} {password} {comment}';
+    protected $signature = 'dispatch:add_comment {id} {comment}';
 
     /**
      * The console command description.
@@ -41,7 +41,6 @@ class DispatchAddComment extends Command
 
         $params = [
             'id' => $this->argument('id'),
-            'password' => $this->argument('password'),
             'comment' => $this->argument('comment'),
         ];
         $request = Request::create(route('api_add_comment'), 'POST', $params);

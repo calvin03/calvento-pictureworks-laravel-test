@@ -25,7 +25,6 @@ class ApiUserController extends Controller
     {
         $rules = array(
             'id' => 'required|exists:users,id',
-            'password' => 'required',
             'comment' => 'required',
     );
 
@@ -34,19 +33,13 @@ class ApiUserController extends Controller
             return response()->json($validator->errors(), 500);
         }
 
-        $user = User::find($request->id);
-
-        if (Hash::check($request->password, $user->password)) {
-            $new_comment = new Comment;
-            $new_comment->user_id = $request->id;
-            $new_comment->comment_description = $request->comment;
-            if ($new_comment->save()) {
-                return response()->json('Add comment successful', 200);
-            } else {
-                return response()->json('Add comment not successful', 500);
-            };
+        $new_comment = new Comment;
+        $new_comment->user_id = $request->id;
+        $new_comment->comment_description = $request->comment;
+        if ($new_comment->save()) {
+            return response()->json('Add comment successful', 200);
         } else {
-            return response()->json('Password Not Match', 401);
-        }
+            return response()->json('Add comment not successful', 500);
+        };
     }
 }
