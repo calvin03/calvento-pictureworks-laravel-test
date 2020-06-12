@@ -4,19 +4,21 @@ Hi Im Calvin Calvento
 
 To Set Up The Project
 
-1. connect your laravel project to your postgres database
+1. clone this repository https://github.com/calvin03/calvento-pictureworks-laravel-test.git
 
-2. create a database name pictureworks_db
+2. connect the project to your postgres database
 
-3. composer install
+3. create a database name pictureworks_db
 
-4. php artisan key:generate
+4. composer install
 
-5. php artisan migrate:refresh --seed
+5. php artisan key:generate
 
-6. run localhost
+6. php artisan migrate:refresh --seed
 
-7. go to http:localhost:8000/user/1
+7. run localhost
+
+8. go to http:localhost:8000/user/1
 
 Documentation
 
