@@ -48,7 +48,6 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-
         if (isset($user)) {
             return view('pages.user', compact(['user']));
         }
