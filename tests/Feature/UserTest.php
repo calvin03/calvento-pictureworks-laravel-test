@@ -18,7 +18,6 @@ class UserTest extends TestCase
     public function testCreateComment()
     {
         $user = factory(User::class)->create();
-
         $response = $this->post("api/user/add_comment", ['id' => $user->id,'password' => $user->password, 'comment' => 'Test'])
       ->assertStatus(200);
     }
